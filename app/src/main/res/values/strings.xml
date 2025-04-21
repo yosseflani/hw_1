@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Race Game</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="car">Car</string>
+    <string name="heart1">Life 1</string>
+    <string name="heart2">Life 2</string>
+    <string name="heart3">Life 3</string>
+</resources>
