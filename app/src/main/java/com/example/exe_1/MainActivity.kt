@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     private var isGameRunning = false
     private var isCollisionHandling = false
     private var lastObstacleTime = 0L
-    private val timeBetweenObstacles = 4000L
+    private val timeBetweenObstacles = 7000L
 
     private val lanePositions = intArrayOf(0, 0, 0)
 
@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.decorView.layoutDirection = android.view.View.LAYOUT_DIRECTION_LTR
         setContentView(R.layout.activity_main)
 
         gameLayout = findViewById(R.id.gameLayout)
@@ -132,6 +133,7 @@ class MainActivity : AppCompatActivity() {
 
         val lane = Random.nextInt(lanes)
         val obstacleSize = laneWidth * 3 / 6
+        val leftMargin = lanePositions[lane] - obstacleSize / 2
 
         val obstacle = ImageView(this).apply {
             setImageResource(R.drawable.ic_obstacle)
@@ -139,7 +141,7 @@ class MainActivity : AppCompatActivity() {
                 obstacleSize,
                 obstacleSize
             ).apply {
-                leftMargin = lanePositions[lane] - obstacleSize / 2
+                this.leftMargin = leftMargin
                 topMargin = 0
             }
             layoutParams = params
@@ -148,7 +150,6 @@ class MainActivity : AppCompatActivity() {
         gameLayout.addView(obstacle)
         obstacleList.add(obstacle)
     }
-
 
     private fun moveObstacles() {
         val iterator = obstacleList.iterator()
@@ -195,7 +196,7 @@ class MainActivity : AppCompatActivity() {
                     carTop < obstacleBottom && carBottom > obstacleTop) {
 
                     isCollisionHandling = true
-                    Toast.makeText(this, "Crash!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, R.string.crash, Toast.LENGTH_SHORT).show()
 
                     gameLayout.removeView(obstacle)
                     iterator.remove()

@@ -6,4 +6,5 @@
     <string name="heart1">Life 1</string>
     <string name="heart2">Life 2</string>
     <string name="heart3">Life 3</string>
+    <string name="crash">Crash!</string>
 </resources>
